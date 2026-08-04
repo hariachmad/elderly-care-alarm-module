@@ -2,19 +2,8 @@ import json
 import os
 class SioClientWrapper:
     def __init__(self, sio_client):
-        self.CONFIG_PATH = os.getenv('CONFIG_PATH')
-        if not self.CONFIG_PATH:
-            raise ValueError("CONFIG_PATH environment variable is not set")
         self.sio_client = sio_client
         self._register_events()
-        
-    def load_config(self,):
-        with open(self.CONFIG_PATH, 'r') as f:
-            return json.load(f)
-
-    def save_config(self,config):
-        with open(self.CONFIG_PATH, 'w') as f:
-            json.dump(config, f, indent=2)
 
     def _register_events(self):
         sio = self.sio_client.get_instance().sio
