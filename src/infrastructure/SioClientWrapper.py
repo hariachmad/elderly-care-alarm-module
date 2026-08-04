@@ -15,10 +15,6 @@ class SioClientWrapper:
         @sio.event
         def disconnect():
             print("Disconnected from server")
-
-        @sio.event
-        def message(data):
-            print(f"Event received: {data}")
             
         @sio.event
         def error(data):
