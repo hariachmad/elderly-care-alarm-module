@@ -19,13 +19,13 @@ def connect_with_retry(sio_client: socketio.Client, url: str, auth: dict):
     attempt = 1
     while True:
         try:
-            logger.info(f"Connecting to Socket.IO server (attempt {attempt})...")
+            print(f"Connecting to Socket.IO server (attempt {attempt})...")
             sio_client.connect(url, auth=auth)
-            logger.info("Connected to Socket.IO server.")
+            print("Connected to Socket.IO server.")
             return
         except Exception as e:
-            logger.error(f"Connection attempt {attempt} failed: {e}")
-            logger.info(f"Retrying in {delay:.1f}s...")
+            print(f"Connection attempt {attempt} failed: {e}")
+            print(f"Retrying in {delay:.1f}s...")
             time.sleep(delay)
             delay = min(delay * 2, MAX_RETRY_DELAY_SEC)
             attempt += 1
