@@ -37,17 +37,7 @@ class SioClientWrapper:
         
         @sio.on('ALARM_RING')
         def on_alarm_ring():
-            self.emit('WAKE_UP_BY_ALARM')  
-            self.emit('ALARM_RING')  
-            
-        @sio.on('ALARM_STOP')
-        def on_alarm_stop(payload):
-            self.emit('ALARM_STOP')
-            
-        @sio.on('ALARM_SNOOZE')
-        def on_alarm_snooze(payload):
-            self.emit('ALARM_SNOOZE')
-        
+            self.emit('WAKE_UP_BY_ALARM', {})  
             
     def emit(self, event: str, data: dict = None):
         """Send event to server"""
