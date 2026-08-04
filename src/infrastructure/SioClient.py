@@ -7,6 +7,8 @@ class SioClient:
                 raise ValueError("sio should not be None")
             cls._instance = super().__new__(cls)
             cls._instance.sio = sio
+        elif sio is not None and sio is not cls._instance.sio:
+            raise RuntimeError("SioClient sudah diinisialisasi dengan sio yang berbeda")
         return cls._instance
 
     @classmethod

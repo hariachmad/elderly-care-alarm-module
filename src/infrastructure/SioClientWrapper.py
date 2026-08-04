@@ -9,7 +9,7 @@ class SioClientWrapper:
         sio = self.sio_client.get_instance().sio
 
         @sio.event
-        def connect():
+        def connect(*args):
             print("Connected with server")
 
         @sio.event
@@ -25,16 +25,16 @@ class SioClientWrapper:
             print(f"Error: {data}")
         
         @sio.on('ALARM_RING')
-        def on_alarm_ring():
-            self.emit('WAKE_UP_BY_ALARM', {})  
+        def on_alarm_ring(*args):
+            self.emit('WAKE_UP_BY_ALARM', {})
             
     def emit(self, event: str, data: dict = None):
         """Send event to server"""
-        self.sio_client.emit(event, data)
+        self.sio_client.get_instance().sio.emit(event, data)
 
     def emit_with_callback(self, event: str, data: dict = None, callback=None):
         """Send event to server with callback"""
-        self.sio_client.emit(event, data, callback=callback)
+        self.sio_client.get_instance().sio.emit(event, data, callback=callback)
     
     
 
