@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 
 from infrastructure.SioClient import SioClient
 from infrastructure.SioClientWrapper import SioClientWrapper
-from infrastructure.logger import logger
 
 load_dotenv()
 
